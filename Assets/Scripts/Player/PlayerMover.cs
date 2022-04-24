@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -7,12 +8,18 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _rangeStrafe;
     [SerializeField] private float _speedForward;
 
+    [SerializeField] private FinishTrigger _finishTrigger;
+
     private float _strafeValue;
 
     private void OnEnable()
     {
         _touchInput.Touched += OnTouched;
+
+        _finishTrigger.Finished += OnFinished;
     }
+
+ 
 
     private void FixedUpdate()
     {
@@ -24,6 +31,8 @@ public class PlayerMover : MonoBehaviour
     private void OnDisable()
     {
         _touchInput.Touched -= OnTouched;
+
+        _finishTrigger.Finished -= OnFinished;
     }
 
     private void OnTouched(float mouseDeltaSwipe)
@@ -44,5 +53,10 @@ public class PlayerMover : MonoBehaviour
 
         else
             return false;
+    }
+
+    private void OnFinished()
+    {
+        _speedForward = 0;
     }
 }
