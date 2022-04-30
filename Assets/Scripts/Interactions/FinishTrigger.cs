@@ -12,7 +12,6 @@ public class FinishTrigger : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-
             Finished?.Invoke();
         }
     }

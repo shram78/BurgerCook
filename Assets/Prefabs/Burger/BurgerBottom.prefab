@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2825502412386255856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5379134453914706887}
+  m_Layer: 0
+  m_Name: JoinPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5379134453914706887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825502412386255856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.294, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1986555728334034554}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3035696452924409475
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,10 +42,10 @@ GameObject:
   - component: {fileID: 401935432565914270}
   - component: {fileID: 8636171667300606813}
   - component: {fileID: 5630181572577973272}
-  - component: {fileID: 5493881244136614960}
-  - component: {fileID: 1747771274060863465}
+  - component: {fileID: 2212063929527624961}
+  - component: {fileID: 2865869115785762614}
   m_Layer: 0
-  m_Name: BulkaBottom
+  m_Name: BurgerBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +61,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children: []
+  m_Children:
+  - {fileID: 5379134453914706887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +128,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.18, z: 0.14}
   m_Center: {x: -0.000000007450581, y: 0, z: 0}
---- !u!114 &5493881244136614960
+--- !u!114 &2212063929527624961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,18 +137,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3035696452924409475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e46af456ad8a6584a957b8cacef768a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 73fc777f4ef9e1443a5f919f7f32faf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1747771274060863465
-MonoBehaviour:
+  _isKeep: 0
+--- !u!54 &2865869115785762614
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3035696452924409475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946a3cec09c76404bab3ff4f524c09ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
