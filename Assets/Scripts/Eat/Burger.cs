@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Burger : Eat
@@ -24,6 +22,11 @@ public class Burger : Eat
         else if (other.gameObject.TryGetComponent(out GateTop gateTop))
         {
             _bulkaTop.gameObject.SetActive(true);
+        }
+
+        else if (other.gameObject.TryGetComponent(out GateCheese gateCheese))
+        {
+            _cheese.gameObject.SetActive(true);
         }
     }
 

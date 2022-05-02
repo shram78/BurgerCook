@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +6,14 @@ using DG.Tweening;
 
 public class Guns : MonoBehaviour
 {
-    [SerializeField] private LeftHand _leftHand;
+    [SerializeField] private Hand _hand;
     [SerializeField] private Boss _boss;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _prefab;
-
-    private List<Eat> _burgers = new List<Eat>();
-    private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    private List<Eat> _eat = new List<Eat>();
 
     public event UnityAction<Eat> DonatedFood;
-
-    private void Start()
-    {
-        _meshRenderer = GetComponent<MeshRenderer>();
-    }
 
     private void OnEnable()
     {
@@ -34,10 +27,10 @@ public class Guns : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Eat burger))
+        if (other.gameObject.TryGetComponent(out Eat eat))
         {
-            DonatedFood?.Invoke(burger);
-            AddBurger(burger);
+            DonatedFood?.Invoke(eat);
+            AddEat(eat);
         }
 
         else if (other.gameObject.TryGetComponent(out Player player))
@@ -55,7 +48,7 @@ public class Guns : MonoBehaviour
     {
         var waitForSecond = new WaitForSeconds(0.5f);
 
-        for (int i = 0; i < _burgers.Count; i++)
+        for (int i = 0; i < _eat.Count; i++)
         {
             var eatPrefab = Instantiate(_prefab, _shootPoint);
 
@@ -65,15 +58,16 @@ public class Guns : MonoBehaviour
         }
     }
 
-    private void AddBurger(Eat burger)
+    private void AddEat(Eat eat)
     {
-        _burgers.Add(burger);
+        _eat.Add(eat);
     }
 
     private void TakeInHand()
     {
         StartCoroutine(HideONTimer());
-        gameObject.transform.SetParent(_leftHand.transform);
+        gameObject.transform.SetParent(_hand.transform);
+        transform.DOMove(_hand._joinGunPoint.position, 0f);
     }
 
     private IEnumerator HideONTimer()
@@ -86,6 +80,7 @@ public class Guns : MonoBehaviour
             timeLeft -= Time.deltaTime;
             yield return null;
         }
+
         _meshRenderer.enabled = true;
     }
 }

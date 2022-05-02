@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
@@ -35,7 +33,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SpawnTimer()
     {
-        float timeLeft = 1.5f;
+        float timeLeft = 2f;
 
         while (timeLeft > 0)
         {

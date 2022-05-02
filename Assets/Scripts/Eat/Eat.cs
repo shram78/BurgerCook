@@ -6,9 +6,9 @@ public class Eat : MonoBehaviour
     private int _maxEatInChain = 10;
     public bool _isKeep = false;
     private int _eatCount;
-    private LeftHand _hand;
+    private Hand _hand;
 
-    public void Init(LeftHand hand, int eatCount)
+    public void Init(Hand hand, int eatCount)
     {
         _eatCount = eatCount;
         _isKeep = true;
