@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4559036110555864046}
   - component: {fileID: 8375076551297949721}
-  - component: {fileID: 4041275131894389999}
-  - component: {fileID: 8911034859556562719}
+  - component: {fileID: 4479732239979116429}
   m_Layer: 0
-  m_Name: Cap
+  m_Name: CapOnPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,12 +43,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3751256170051666260}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.10210561, y: 0.13955481, z: 0.102318004}
   m_Center: {x: 0.00022589565, y: 0.07032205, z: -0.00038557054}
---- !u!114 &4041275131894389999
+--- !u!114 &4479732239979116429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,28 +57,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3751256170051666260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93c95416e3119549ae6b4bb4cee2222, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f5c0cd7da6b43f4dbf2b1dc63ecfb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isKeep: 0
-  _water: {fileID: 3771479574282617174}
-  _cap: {fileID: 5850656555265829186}
---- !u!54 &8911034859556562719
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751256170051666260}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  _foodFrefab: {fileID: 0}
+  _hand: {fileID: 0}
 --- !u!1 &3771479574282617174
 GameObject:
   m_ObjectHideFlags: 0

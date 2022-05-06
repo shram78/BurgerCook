@@ -11,9 +11,9 @@ public class Guns : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _prefab;
     [SerializeField] private MeshRenderer _meshRenderer;
-    private List<Eat> _eat = new List<Eat>();
+    private List<Food> _eat = new List<Food>();
 
-    public event UnityAction<Eat> DonatedFood;
+    public event UnityAction<Food> DonatedFood;
 
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public class Guns : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Eat eat))
+        if (other.gameObject.TryGetComponent(out Food eat))
         {
             DonatedFood?.Invoke(eat);
             AddEat(eat);
@@ -58,7 +58,7 @@ public class Guns : MonoBehaviour
         }
     }
 
-    private void AddEat(Eat eat)
+    private void AddEat(Food eat)
     {
         _eat.Add(eat);
     }

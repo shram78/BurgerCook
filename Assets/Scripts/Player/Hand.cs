@@ -6,14 +6,15 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     [SerializeField] private Guns _gun;
-    public Transform _joinGunPoint; // get set
 
-    private List<Eat> _eat = new List<Eat>();
-    private BoxCollider _collector;
+    public Transform _joinGunPoint; // get set 
+    private List<Food> _foods = new List<Food>();
+    private Food _firstFood;
 
-    private void Start()
+    private void Awake()
     {
-        _collector = GetComponent<BoxCollider>();
+        _firstFood = GetComponentInChildren<Food>();
+        _foods.Add(_firstFood);
     }
 
     private void OnEnable()
@@ -21,37 +22,30 @@ public class Hand : MonoBehaviour
         _gun.DonatedFood += OnLostFood;
     }
 
-    private void OnLostFood(Eat eat)
-    {
-        Vector3 newSizeCollector = new Vector3(_collector.size.x, _collector.size.y, _collector.size.z - 2f);
-        _collector.size = newSizeCollector;
-
-        _eat.Remove(eat);
-
-        eat.gameObject.SetActive(false);
-    }
-
     private void OnDisable()
     {
         _gun.DonatedFood -= OnLostFood;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnLostFood(Food food)
     {
-        Vector3 newSizeCollector = new Vector3(_collector.size.x, _collector.size.y, _collector.size.z + 2f);
+        _foods.Remove(food);
 
-        if (other.gameObject.TryGetComponent(out Eat eat))
-        {
-            AddEat(eat);
-
-            eat.Init(this, _eat.Count);
-
-            _collector.size = newSizeCollector;
-        }
+        food.gameObject.SetActive(false);
     }
 
-    private void AddEat(Eat eat)
+    public void AddFood(Food eat)
     {
-        _eat.Add(eat);
+        _foods.Add(eat);
+    }
+
+    public int GetCount() // свойство сделать
+    {
+        return _foods.Count;
+    }
+
+    public Transform GetPreviousPosition()
+    {
+        return _foods[_foods.Count - 1].transform;
     }
 }

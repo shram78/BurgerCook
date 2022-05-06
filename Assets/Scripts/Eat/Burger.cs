@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Burger : Eat
+public class Burger : Food
 {
     [SerializeField] private GameObject _bulkaTop;
     [SerializeField] private GameObject _salat;

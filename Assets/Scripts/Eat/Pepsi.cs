@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pepsi : Eat
+public class Pepsi : Food
 {
     [SerializeField] private GameObject _water;
     [SerializeField] private GameObject _cap;
