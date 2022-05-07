@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: -8974244193233595218
     second: Liquid3|Tubes.001Action.002
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Distortion
+    second: {fileID: 2100000, guid: 2479d8590c2e72c429d1bea3bdb3ec96, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
