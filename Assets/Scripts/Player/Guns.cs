@@ -9,8 +9,10 @@ public class Guns : MonoBehaviour
     [SerializeField] private Hand _hand;
     [SerializeField] private Boss _boss;
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private GameObject _prefabShoot;
+    [SerializeField] private GameObject _gun;
+    [SerializeField] private GameObject _miniFood;
+
     private List<Food> _eat = new List<Food>();
 
     public event UnityAction<Food> DonatedFood;
@@ -30,7 +32,10 @@ public class Guns : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Food eat))
         {
             DonatedFood?.Invoke(eat);
-            AddEat(eat);
+
+            _eat.Add(eat);
+
+            MakeJump();
         }
 
         else if (other.gameObject.TryGetComponent(out Player player))
@@ -39,9 +44,30 @@ public class Guns : MonoBehaviour
         }
     }
 
+    private void MakeJump()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_gun.transform.DOLocalMoveY(0.5f, 0.05f)).SetRelative();
+        sequence.Append(_gun.transform.DOLocalMoveY(-0.5f, 0f)).SetRelative();
+    }
+
     private void OnShooting()
     {
         StartCoroutine(EatingDelay());
+
+        _miniFood.transform.DOLocalMoveZ(0.3f, 0.7f).SetLoops(-1, LoopType.Restart).SetRelative();
+    }
+
+    private void MakeRecoil()
+    {
+        int forceRecoil = Random.Range(5, 35);
+        float timeRecoil = Random.Range(0.05f, 0.3f);
+
+        Vector3 endPosition = new Vector3(forceRecoil, 0f, 0f);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_gun.transform.DOLocalRotate(endPosition, timeRecoil).SetRelative());
+        sequence.Append(_gun.transform.DOLocalRotate(-endPosition, timeRecoil).SetRelative());
     }
 
     private IEnumerator EatingDelay()
@@ -50,17 +76,14 @@ public class Guns : MonoBehaviour
 
         for (int i = 0; i < _eat.Count; i++)
         {
-            var eatPrefab = Instantiate(_prefab, _shootPoint);
-
+            var eatPrefab = Instantiate(_prefabShoot, _shootPoint);
+            _prefabShoot.transform.SetParent(null);
             eatPrefab.transform.DOMove(_boss._mouthPoint.position, 1f);
+
+            MakeRecoil();
 
             yield return waitForSecond;
         }
-    }
-
-    private void AddEat(Food eat)
-    {
-        _eat.Add(eat);
     }
 
     private void TakeInHand()
@@ -72,7 +95,8 @@ public class Guns : MonoBehaviour
 
     private IEnumerator HideONTimer()
     {
-        _meshRenderer.enabled = false;
+        _gun.gameObject.SetActive(false);
+
         float timeLeft = 0.3f;
 
         while (timeLeft > 0)
@@ -81,6 +105,7 @@ public class Guns : MonoBehaviour
             yield return null;
         }
 
-        _meshRenderer.enabled = true;
+        _gun.gameObject.SetActive(true);
+        _miniFood.gameObject.SetActive(true);
     }
 }

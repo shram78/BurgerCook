@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    private float _radius = 1.3f;
+    [SerializeField] private float _radius = 1.5f;
+
     public bool _isKeep = false;
     private float _foodCount;
     private Hand _hand;
