@@ -33,7 +33,7 @@ public class Food : MonoBehaviour
 
     private void StartMoving()
     {
-        Vector3 headPosition = new Vector3(_hand.transform.position.x, _hand.transform.position.y, _hand.transform.position.z + _radius);
+        Vector3 headPosition = new Vector3(_hand._joinPoint.transform.position.x, _hand._joinPoint.transform.position.y, _hand._joinPoint.transform.position.z + _radius);
         Vector3 tailPosition = new Vector3(_previousFoodPosition.position.x, transform.position.y, headPosition.z + _currentLenghtChain);
 
         transform.position = Vector3.Lerp(transform.position, tailPosition, movingValve * Time.fixedDeltaTime);

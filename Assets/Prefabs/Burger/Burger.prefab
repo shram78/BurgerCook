@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7052b6315c23346bc560b3e1ce6267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 1.5
+  _radius: 1.3
   _isKeep: 0
   _bulkaTop: {fileID: 68145261475117919}
   _salat: {fileID: 4896282832173921899}

@@ -16,6 +16,8 @@ public class Guns : MonoBehaviour
     private List<Food> _eat = new List<Food>();
 
     public event UnityAction<Food> DonatedFood;
+    public event UnityAction TakedGun;
+
 
     private void OnEnable()
     {
@@ -55,19 +57,7 @@ public class Guns : MonoBehaviour
     {
         StartCoroutine(EatingDelay());
 
-        _miniFood.transform.DOLocalMoveZ(0.3f, 0.7f).SetLoops(-1, LoopType.Restart).SetRelative();
-    }
-
-    private void MakeRecoil()
-    {
-        int forceRecoil = Random.Range(5, 35);
-        float timeRecoil = Random.Range(0.05f, 0.3f);
-
-        Vector3 endPosition = new Vector3(forceRecoil, 0f, 0f);
-
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(_gun.transform.DOLocalRotate(endPosition, timeRecoil).SetRelative());
-        sequence.Append(_gun.transform.DOLocalRotate(-endPosition, timeRecoil).SetRelative());
+        _miniFood.transform.DOLocalMoveZ(0.3f, 0.7f).SetLoops(_eat.Count, LoopType.Restart).SetRelative();
     }
 
     private IEnumerator EatingDelay()
@@ -77,10 +67,10 @@ public class Guns : MonoBehaviour
         for (int i = 0; i < _eat.Count; i++)
         {
             var eatPrefab = Instantiate(_prefabShoot, _shootPoint);
-            _prefabShoot.transform.SetParent(null);
+           // _prefabShoot.transform.SetParent(null);
             eatPrefab.transform.DOMove(_boss._mouthPoint.position, 1f);
 
-            MakeRecoil();
+            _hand.MakeRecoil();
 
             yield return waitForSecond;
         }
@@ -89,8 +79,8 @@ public class Guns : MonoBehaviour
     private void TakeInHand()
     {
         StartCoroutine(HideONTimer());
-        gameObject.transform.SetParent(_hand.transform);
-        transform.DOMove(_hand._joinGunPoint.position, 0f);
+        gameObject.transform.SetParent(_hand._joinPoint.transform);
+        transform.DOMove(_hand._joinPoint.position, 0f);
     }
 
     private IEnumerator HideONTimer()
@@ -107,5 +97,7 @@ public class Guns : MonoBehaviour
 
         _gun.gameObject.SetActive(true);
         _miniFood.gameObject.SetActive(true);
+
+        TakedGun?.Invoke();
     }
 }

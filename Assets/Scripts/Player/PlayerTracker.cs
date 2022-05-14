@@ -30,8 +30,8 @@ public class PlayerTracker : MonoBehaviour
     {
         _isFinish = true;
         float timeMoviing = 1f;
-        float newCameraYPosition = 2f;
-        float newCameraZPosition = 4f;
+        float newCameraYPosition = 2.8f;
+        float newCameraZPosition = 4.5f;
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalRotate(Vector3.zero, timeMoviing));
