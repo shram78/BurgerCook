@@ -67,8 +67,8 @@ public class Guns : MonoBehaviour
         for (int i = 0; i < _eat.Count; i++)
         {
             var eatPrefab = Instantiate(_prefabShoot, _shootPoint);
-           // _prefabShoot.transform.SetParent(null);
             eatPrefab.transform.DOMove(_boss._mouthPoint.position, 1f);
+            eatPrefab.transform.SetParent(null);
 
             _hand.MakeRecoil();
 
