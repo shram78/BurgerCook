@@ -4,15 +4,15 @@ using UnityEngine.EventSystems;
 
 public class TouchInput : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    private const string MouseAxisX = "Mouse X";
     private bool _isMakeSwipe;
-    private const string _mouseAxisX = "Mouse X";
 
     public event UnityAction<float> Touched;
 
     private void Update()
     {
         if (_isMakeSwipe)
-            Touched?.Invoke(Input.GetAxis(_mouseAxisX) * (-1));
+            Touched?.Invoke(Input.GetAxis(MouseAxisX) * (-1));
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -42,10 +42,8 @@ public class PlayerMover : MonoBehaviour
     {
         if (mouseDeltaSwipe > 0 && transform.position.x > _rangeStrafe * (-1))
             return true;
-
         else if (mouseDeltaSwipe < 0 && transform.position.x < _rangeStrafe)
             return true;
-
         else
             return false;
     }
