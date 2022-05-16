@@ -7,12 +7,12 @@ public class LeftWrist : MonoBehaviour
 
     private void OnEnable()
     {
-        _gun.TakedGun += OnRotateGun;
+        _gun.TookGun += OnRotateGun;
     }
 
     private void OnDisable()
     {
-        _gun.TakedGun -= OnRotateGun;
+        _gun.TookGun -= OnRotateGun;
     }
 
     private void OnRotateGun()

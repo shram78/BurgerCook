@@ -18,8 +18,8 @@ public class Guns : MonoBehaviour
 
     private List<Food> _eat = new List<Food>();
 
-    public event UnityAction<Food> DonatedFood;
-    public event UnityAction TakedGun;
+    public event UnityAction<Food> FoodLoaded;
+    public event UnityAction TookGun;
 
     private void OnEnable()
     {
@@ -35,7 +35,7 @@ public class Guns : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Food eat))
         {
-            DonatedFood?.Invoke(eat);
+            FoodLoaded?.Invoke(eat);
 
             _eat.Add(eat);
 
@@ -102,6 +102,6 @@ public class Guns : MonoBehaviour
         _takeParticle.Play();
         _takeFlare.Play();
 
-        TakedGun?.Invoke();
+        TookGun?.Invoke();
     }
 }

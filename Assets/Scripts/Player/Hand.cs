@@ -22,12 +22,12 @@ public class Hand : MonoBehaviour
 
     private void OnEnable()
     {
-        _gun.DonatedFood += OnLostFood;
+        _gun.FoodLoaded += OnLostFood;
     }
 
     private void OnDisable()
     {
-        _gun.DonatedFood -= OnLostFood;
+        _gun.FoodLoaded -= OnLostFood;
     }
 
     private void OnLostFood(Food food)
