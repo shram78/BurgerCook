@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-
 public class PointUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _pointText;

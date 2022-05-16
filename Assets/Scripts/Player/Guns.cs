@@ -12,12 +12,14 @@ public class Guns : MonoBehaviour
     [SerializeField] private GameObject _prefabShoot;
     [SerializeField] private GameObject _gun;
     [SerializeField] private GameObject _miniFood;
+    [SerializeField] private ParticleSystem _jumpParticle;
+    [SerializeField] private ParticleSystem _takeParticle;
+    [SerializeField] private ParticleSystem _takeFlare;
 
     private List<Food> _eat = new List<Food>();
 
     public event UnityAction<Food> DonatedFood;
     public event UnityAction TakedGun;
-
 
     private void OnEnable()
     {
@@ -41,13 +43,13 @@ public class Guns : MonoBehaviour
         }
 
         else if (other.gameObject.TryGetComponent(out Player player))
-        {
             TakeInHand();
-        }
     }
 
     private void MakeJump()
     {
+        _jumpParticle.Play();
+
         Sequence sequence = DOTween.Sequence();
         sequence.Append(_gun.transform.DOLocalMoveY(0.5f, 0.05f)).SetRelative();
         sequence.Append(_gun.transform.DOLocalMoveY(-0.5f, 0f)).SetRelative();
@@ -97,6 +99,8 @@ public class Guns : MonoBehaviour
 
         _gun.gameObject.SetActive(true);
         _miniFood.gameObject.SetActive(true);
+        _takeParticle.Play();
+        _takeFlare.Play();
 
         TakedGun?.Invoke();
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 
-
 public class FoodOnPlane : MonoBehaviour
 {
     [SerializeField] private Food _foodFrefab;

@@ -22,7 +22,7 @@ public class Food : MonoBehaviour
         _isKeep = true;
         _hand = hand;
 
-        _foodCount = _hand.GetCount(); // 
+        _foodCount = _hand.GetCount(); 
 
         transform.SetParent(null);
 

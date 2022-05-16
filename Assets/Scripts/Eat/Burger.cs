@@ -10,24 +10,15 @@ public class Burger : Food
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out GateTomato gateTomato))
-        {
             _tomato.gameObject.SetActive(true);
-        }
 
         else if (other.gameObject.TryGetComponent(out GateSalat gateSalat))
-        {
             _salat.gameObject.SetActive(true);
-        }
 
         else if (other.gameObject.TryGetComponent(out GateTop gateTop))
-        {
             _bulkaTop.gameObject.SetActive(true);
-        }
 
         else if (other.gameObject.TryGetComponent(out GateCheese gateCheese))
-        {
             _cheese.gameObject.SetActive(true);
-        }
     }
-
 }

@@ -7,7 +7,6 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _strafeSpeed;
     [SerializeField] private float _rangeStrafe;
     [SerializeField] private float _speedForward;
-
     [SerializeField] private FinishTrigger _finishTrigger;
 
     private float _strafeValue;
@@ -18,8 +17,6 @@ public class PlayerMover : MonoBehaviour
 
         _finishTrigger.Finished += OnFinished;
     }
-
- 
 
     private void FixedUpdate()
     {
@@ -40,8 +37,6 @@ public class PlayerMover : MonoBehaviour
         if ( CanMove(mouseDeltaSwipe))
             _strafeValue -= mouseDeltaSwipe;
     }
-
-
 
     private bool CanMove(float mouseDeltaSwipe)
     {
